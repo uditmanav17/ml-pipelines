@@ -1,4 +1,8 @@
+import contextlib
 import platform
+from pathlib import Path
+
+from helper import create_some_files
 
 from prefect import flow, get_run_logger, task
 
@@ -29,7 +33,6 @@ def platform_info():
     return info
 
 
-
 @task
 def package_info():
     import cv2
@@ -56,11 +59,15 @@ def package_info():
     return info
 
 
-
 @flow
 def print_executor_info():
     platform_info()
-    package_info()
+    create_some_files(Path("./"))
+    try:
+        package_info()
+    except ImportError as e:
+        print("Some packages are not available!!!")
+
 
 if __name__ == "__main__":
     print_executor_info()

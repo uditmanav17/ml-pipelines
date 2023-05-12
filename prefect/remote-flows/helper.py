@@ -9,4 +9,6 @@ def time_stamp():
 
 def create_some_files(dir_path: Path):
     with open(dir_path / "temp_file.txt", "+a") as f:
-        f.write(f"Updating log at {time_stamp()}\n")
+        out = f"Updating log at {time_stamp()}\n"
+        print(out)
+        f.write(out)

@@ -1,3 +1,4 @@
+import os
 from datetime import datetime as dt
 from functools import lru_cache
 from pathlib import Path
@@ -5,6 +6,12 @@ from pathlib import Path
 
 def time_stamp():
     return dt.now().strftime("%Y%m%d_%H%M")
+
+
+def print_cwd():
+    cwd = os.getcwd()
+    print(cwd)
+    return cwd
 
 
 def create_some_files(dir_path: Path):

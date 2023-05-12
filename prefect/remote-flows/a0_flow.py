@@ -2,7 +2,7 @@ import contextlib
 import platform
 from pathlib import Path
 
-from helper import create_some_files
+from helper import create_some_files, print_cwd
 
 from prefect import flow, get_run_logger, task
 
@@ -63,6 +63,7 @@ def package_info():
 def print_executor_info():
     platform_info()
     create_some_files(Path("./"))
+    print_cwd()
     try:
         package_info()
     except ImportError as e:
